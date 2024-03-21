@@ -3,6 +3,11 @@ from llama_index.core import SimpleDirectoryReader
 from QAWithPDF.data_ingestion import load_data
 from QAWithPDF.embedding import download_gemini_embedding
 from QAWithPDF.model_api import load_model
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 def main():
     st.set_page_config(page_title="QA with Documents")
@@ -38,12 +43,16 @@ def main():
     # Text input for user question
     user_question = st.text_input("Ask your question")
     
+    # Sidebar for entering API key
+    st.sidebar.header("Google Gemini API Key")
+    gemini_api_key = st.sidebar.text_input("Enter API Key")
+    
     # Processing button
     if st.button("Submit & Process"):
         with st.spinner("Processing..."):
             document = load_data(doc)
             model = load_model()
-            query_engine = download_gemini_embedding(model, document)
+            query_engine = download_gemini_embedding(model, document, api_key=gemini_api_key)
                 
             response = query_engine.query(user_question)
                 
