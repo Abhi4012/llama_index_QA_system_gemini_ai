@@ -43,9 +43,8 @@ def main():
     # Text input for user question
     user_question = st.text_input("Ask your question")
     
-    # Sidebar for entering API key
-    st.sidebar.header("Google Gemini API Key")
-    gemini_api_key = st.sidebar.text_input("Enter API Key")
+    # Loading API key from environment variables
+    gemini_api_key = os.getenv("GEMINI_API_KEY")
     
     # Processing button
     if st.button("Submit & Process"):
