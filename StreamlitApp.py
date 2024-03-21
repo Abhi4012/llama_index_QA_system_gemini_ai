@@ -44,7 +44,7 @@ def main():
     user_question = st.text_input("Ask your question")
     
     # Loading API key from environment variables
-    gemini_api_key = os.getenv("GOOGLE_API_KEY")
+    gemini_api_key = os.environ["GOOGLE_API_KEY"] == st.secrets["GOOGLE_API_KEY"]
     
     # Processing button
     if st.button("Submit & Process"):

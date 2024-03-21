@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 import sys
-
+import streamlit as st
 from llama_index.llms.gemini import Gemini
 from IPython.display import Markdown, display
 import google.generativeai as genai
@@ -10,7 +10,7 @@ from logger import logging
 
 load_dotenv()
 
-GOOGLE_API_KEY=os.getenv("GOOGLE_API_KEY")
+GOOGLE_API_KEY=os.environ["GOOGLE_API_KEY"] == st.secrets["GOOGLE_API_KEY"]
 
 genai.configure(api_key=GOOGLE_API_KEY)
 
