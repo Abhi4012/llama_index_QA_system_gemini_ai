@@ -10,7 +10,7 @@ import sys
 from exception import customexception
 from logger import logging
 
-def download_gemini_embedding(model,document):
+def download_gemini_embedding(model,document,api_key):
     """
     Downloads and initializes a Gemini Embedding model for vector embeddings.
 
